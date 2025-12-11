@@ -1,0 +1,33 @@
+# 3X-UI VPN - Docker Compose конфигурация
+# Источник: research/3X-UI_DEPLOYMENT.md:67-86
+#
+# 3X-UI - современная панель управления XRay с поддержкой:
+# - VLESS+Reality (стойкость к блокировкам)
+# - SQLite база данных (встроенная, не требует отдельного контейнера)
+# - Порт 443 для VPN (маскировка под HTTPS)
+# - Порт 54321 для веб-панели управления
+
+version: '3.8'
+
+services:
+  3x-ui:
+    image: ghcr.io/mhsanaei/3x-ui:latest
+    container_name: 3x-ui
+    restart: unless-stopped
+    ports:
+      - "54321:54321"      # Web UI панель управления
+      - "443:443/tcp"      # VLESS (маскировка под HTTPS)
+      - "443:443/udp"      # QUIC для лучшей производительности
+      - "80:80/tcp"        # HTTP fallback (опционально)
+    volumes:
+      - ./data/db:/etc/x-ui/          # SQLite база данных и конфигурация
+      - ./data/cert:/root/cert/       # SSL сертификаты для Reality
+    environment:
+      - XRAY_VMESS_AEAD_FORCED=false  # Совместимость с клиентами
+    network_mode: "host"              # Для лучшей производительности
+
+# ВАЖНО:
+# 1. После первого запуска сменить пароль администратора (admin/admin)
+# 2. Настроить VLESS+Reality inbound на порту 443
+# 3. Установить IP Limit = 1 для защиты от перепродажи доступа
+# 4. Резервное копирование: docker cp 3x-ui:/etc/x-ui/x-ui.db ./backup/

@@ -1,0 +1,208 @@
+# ================================================================================
+# .gitignore для проекта WireGuard VPN
+# ================================================================================
+# Назначение: Исключить конфиденциальные и временные файлы из Git репозитория
+# ================================================================================
+
+# === КОНФИДЕНЦИАЛЬНЫЕ ДАННЫЕ ===
+# Данные пользователей, конфигурации, базы данных
+data/
+.env
+
+# SSL сертификаты и приватные ключи
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+
+# Конфигурационные файлы с паролями
+*config.json
+*credentials*
+*secrets*
+
+# === БАЗЫ ДАННЫХ ===
+# SQLite базы данных (содержат пользовательские данные)
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# === РЕЗЕРВНЫЕ КОПИИ ===
+# Бэкапы (могут содержать конфиденциальную информацию)
+backup/
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+*.7z
+*.bak
+*.backup
+
+# === ЛОГИ ===
+# Файлы логов (могут содержать IP адреса и данные соединений)
+*.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === ВРЕМЕННЫЕ ФАЙЛЫ ===
+# Временные файлы системы и редакторов
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE И РЕДАКТОРЫ ===
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs (IntelliJ, WebStorm, PyCharm и т.д.)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+# Emacs
+\#*\#
+.\#*
+
+# === NODE.JS ===
+# Зависимости и кэш
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# === PYTHON ===
+# Байт-код и кэш
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Виртуальные окружения
+venv/
+ENV/
+env/
+.venv
+
+# === DOCKER ===
+# Docker volumes (локальные данные)
+volumes/
+
+# === СИСТЕМА ЗАДАЧ ===
+# Локальные задачи (не коммитить - личные заметки)
+Tasks/
+TODO.local
+.tasks/
+
+# === ОС СПЕЦИФИЧНЫЕ ===
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# === МОНИТОРИНГ И МЕТРИКИ ===
+# Prometheus данные
+prometheus_data/
+
+# Grafana данные
+grafana_data/
+
+# === ТЕСТИРОВАНИЕ ===
+# Покрытие тестами
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.pytest_cache/
+.hypothesis/
+
+# === РАЗНОЕ ===
+# Кэш различных инструментов
+.cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# Скомпилированные файлы
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Пакеты
+*.jar
+*.war
+*.nar
+*.ear
+*.tar.gz
+*.rar
+
+# ================================================================================
+# ВАЖНО: Перед коммитом всегда проверяйте, что не добавляете:
+#   - Пароли и API ключи
+#   - Приватные ключи и сертификаты
+#   - Базы данных с пользовательскими данными
+#   - IP адреса серверов
+#
+# Используйте: git status, git diff перед git add
+# ================================================================================
